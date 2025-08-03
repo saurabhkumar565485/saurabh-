@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>सपना बनकर रह गए…</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 40px;
+    }
+    .lyrics {
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+      white-space: pre-line;
+      max-width: 800px;
+    }
+  </style>
+</head>
+<body>
+  <div class="lyrics" id="lyrics"></div>
+  <script>
+    const text = `
+(Soft Piano Intro)
+
+ना आप चाहत थीं मेरी…
+ना कोई ज़रूरत, ना कोई ज़िद…
+आप तो बस वो मोहब्बत थीं…
+जिसे पाने की ख्वाहिश भी कभी ना थी।
+
+फिर भी किस्मत ने खेल खेला,
+आपको दिल में ऐसा बसा दिया…
+अब तो ख़्वाबों में भी डर लगता है,
+क्योंकि आप किसी और की अमानत हैं।
+
+आप वो सपना हैं…
+जो अपना होकर भी सच नहीं होता,
+आप वो दर्द हैं…
+जो रूह में रहकर भी कहा नहीं जाता।
+आप सपना बनकर रह गए…
+बस सपना बनकर रह गए…
+`;
+
+    let i = 0;
+    const speed = 40;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("lyrics").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    window.onload = typeWriter;
+  </script>
+</body>
+</html>

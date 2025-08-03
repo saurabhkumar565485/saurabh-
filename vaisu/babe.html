@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Romantic Moments ❤</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      color: #333;
+    }
+
+    nav {
+      background: #ff6b81;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav button {  
+      margin: 0 10px;
+      padding: 10px 20px;
+      background: #fff;
+      color: #ff4d6d;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    nav button:hover {
+      background: #ffe5ec;
+    }
+
+    section {
+      display: none;
+      padding: 40px 20px;
+      min-height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .active {
+      display: flex !important;
+    }
+
+    /* Lyrics Style */
+    #lyrics1 .lyrics,
+    #lyrics2 .lyrics {
+      font-size: 1.2rem;
+      white-space: pre-line;
+      max-width: 800px;
+      line-height: 1.8rem;
+      background: rgba(255,255,255,0.2);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      color: #fff;
+    }
+
+    #lyrics2 {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center/cover;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff6b81;
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    /* Profile Style */
+    #profile .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    #profile img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    #profile h2 {
+      margin: 15px 0 5px;
+      color: #ff4d6d;
+    }
+
+    #profile p {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <button onclick="showSection('lyrics1')">🎤 Typewriter Lyrics</button>
+    <button onclick="showSection('lyrics2')">🎶 Lyrics + Music</button>
+    <button onclick="showSection('profile')">💖 Partner Profile</button>
+  </nav>
+
+  <!-- Section 1: Typewriter Lyrics -->
+  <section id="lyrics1" class="active">
+    <div class="lyrics" id="lyricsText1"></div>
+  </section>
+
+  <!-- Section 2: Lyrics + Music -->
+  <section id="lyrics2">
+    <div>
+      <div class="lyrics" id="lyricsText2"></div>
+      <button class="btn" onclick="playMusic()">▶ Play Piano Music</button>
+    </div>
+    <audio id="bg-music" loop>
+      <source src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav" type="audio/wav">
+    </audio>
+  </section>
+
+  <!-- Section 3: Profile -->
+  <section id="profile">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb" alt="My Love">
+      <h2>❤ vaisu ❤</h2>
+      <p>मेरी रूह का सबसे हसीन हिस्सा, जो हमेशा मेरे दिल में रहेगी।</p>
+    </div>
+  </section>
+
+  <script>
+    const text = `
+(Soft Piano Intro)
+
+ना आप चाहत थीं मेरी…
+ना कोई ज़रूरत, ना कोई ज़िद…
+आप तो बस वो मोहब्बत थीं…
+जिसे पाने की ख्वाहिश भी कभी ना थी।
+
+फिर भी किस्मत ने खेल खेला,
+आपको दिल में ऐसा बसा दिया…
+अब तो ख़्वाबों में भी डर लगता है,
+क्योंकि आप किसी और की अमानत हैं।
+
+आप वो सपना हैं…
+जो अपना होकर भी सच नहीं होता,
+आप वो दर्द हैं…
+जो रूह में रहकर भी कहा नहीं जाता।
+आप सपना बनकर रह गए…
+बस सपना बनकर रह गए…
+`;
+
+    let i = 0;
+    const speed = 40;
+
+    function typeWriter1() {
+      if (i < text.length) {
+        document.getElementById("lyricsText1").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter1, speed);
+      }
+    }
+
+    // Lyrics for Section 2 without animation
+    document.getElementById("lyricsText2").innerText = text;
+
+    function playMusic() {
+      document.getElementById("bg-music").play();
+    }
+
+    // Section switching
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      if (id === 'lyrics1') {
+        document.getElementById("lyricsText1").innerHTML = '';
+        i = 0;
+        typeWriter1();
+      }
+    }
+
+    // Start first typing effect
+    window.onload = () => {
+      typeWriter1();
+    };
+  </script>
+
+</body>
+</html>

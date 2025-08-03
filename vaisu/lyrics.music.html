@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>सपना बनकर रह गए…</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .lyrics {
+      font-size: 1.3rem;
+      line-height: 2rem;
+      max-width: 900px;
+      white-space: pre-line;
+      background: rgba(0,0,0,0.3);
+      padding: 30px;
+      border-radius: 15px;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff6b81;
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>🎶 सपना बनकर रह गए… 🎶</h1>
+    <div class="lyrics" id="lyrics"></div>
+    <button class="btn" onclick="playMusic()">▶ Play Piano Music</button>
+  </div>
+
+  <!-- Piano Music -->
+  <audio id="bg-music" loop>
+    <source src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav" type="audio/wav">
+  </audio>
+
+  <script>
+    const text = `
+(Soft Piano Intro)
+
+ना आप चाहत थीं मेरी…
+ना कोई ज़रूरत, ना कोई ज़िद…
+आप तो बस वो मोहब्बत थीं…
+जिसे पाने की ख्वाहिश भी कभी ना थी।
+
+फिर भी किस्मत ने खेल खेला,
+आपको दिल में ऐसा बसा दिया…
+अब तो ख़्वाबों में भी डर लगता है,
+क्योंकि आप किसी और की अमानत हैं।
+
+आप वो सपना हैं…
+जो अपना होकर भी सच नहीं होता,
+आप वो दर्द हैं…
+जो रूह में रहकर भी कहा नहीं जाता।
+आप सपना बनकर रह गए…
+बस सपना बनकर रह गए…
+`;
+    let i = 0;
+    const speed = 50;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("lyrics").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    window.onload = typeWriter;
+    function playMusic() {
+      document.getElementById("bg-music").play();
+    }
+  </script>
+</body>
+</html>
